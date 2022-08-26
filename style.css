@@ -1,0 +1,43 @@
+* {
+  font-family: "Tomaha", Courier, monospace;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 312px;
+  height: 312px;
+  margin: auto;
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  border: solid black 1px;
+  margin: 1px;
+}
+
+.cross {
+  height: 100px;
+  width: 100px;
+  border: solid black 1px;
+  margin: 1px;
+  background-image: url(images/cross.png);
+}
+
+.naught {
+  height: 100px;
+  width: 100px;
+  border: solid black 1px;
+  margin: 1px;
+  background-image: url(images/naught.png);
+}
+
+button {
+  margin-top: 35px;
+}
