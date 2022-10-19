@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       computerTurn = false;
       playerTurn = true;
       winner = false;
-      playText.innerHTML = `Let's Play`;
+      playText.innerHTML = `Let's Play!`;
     }
   };
 
