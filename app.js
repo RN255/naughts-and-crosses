@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[3].className == "cross" &&
@@ -39,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[6].className == "cross" &&
@@ -47,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
 
     // check naught win horizontal
@@ -57,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[3].className == "naught" &&
@@ -65,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[6].className == "naught" &&
@@ -73,6 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
 
     // check cross win vertical
@@ -83,6 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[1].className == "cross" &&
@@ -91,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[2].className == "cross" &&
@@ -99,6 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
 
     // check naught win vertical
@@ -109,6 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[1].className == "naught" &&
@@ -117,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[2].className == "naught" &&
@@ -125,6 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
 
     // check cross win diagonal
@@ -135,6 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[2].className == "cross" &&
@@ -143,6 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `cross wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
 
     // check cross win vertical
@@ -153,6 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
     if (
       squares[2].className == "naught" &&
@@ -161,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       playText.innerHTML = `naught wins!`;
       winner = true;
+      computerTurn = false;
+      return true;
     }
   }
 
@@ -173,20 +205,31 @@ document.addEventListener("DOMContentLoaded", () => {
           squares[i].className = "cross";
           turnsRemaining--;
           playerTurn = false;
-          computerTurn = true;
-          checkWin();
+          if (checkWin()) {
+            return;
+          } else {
+            computerTurn = true;
+          }
         }
 
         // computer turn
-        while (computerTurn == true && turnsRemaining > 0) {
-          let rand = Math.floor(Math.random() * 9);
-          if (squares[rand].className == "square") {
-            squares[rand].className = "naught";
-            turnsRemaining--;
-            computerTurn = false;
-            playerTurn = true;
-            checkWin();
+        if (computerTurn == true && turnsRemaining > 0) {
+
+          function computerTurn() {
+            let rand = Math.floor(Math.random() * 9);
+            if (squares[rand].className == "square") {
+              squares[rand].className = "naught";
+              turnsRemaining--;
+              computerTurn = false;
+              playerTurn = true;
+              checkWin();
+            } else {
+              computerTurn()
+            }
           }
+
+          setTimeout(computerTurn, 500);
+         
         }
       };
     }
